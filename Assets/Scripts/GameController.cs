@@ -64,14 +64,18 @@ public class GameController : Singleton<GameController>
 
 		instance.transform.position = position;
 
-		Shake();
+		StopAllCoroutines();
+		StartCoroutine(Shake());
 		instance.GetComponent<SimpleKeyFade>().SetChar(Helpers.KeyToCaption(key)); ;
 	}
 
 
-	public void Shake()
+	public IEnumerator Shake()
 	{
-		cameraNoise.m_AmplitudeGain = 2;
-		cameraNoise.m_FrequencyGain = 2;
+		cameraNoise.m_AmplitudeGain = 1;
+		cameraNoise.m_FrequencyGain = 1;
+		yield return new WaitForSeconds(.25f);
+		cameraNoise.m_AmplitudeGain = 0;
+		cameraNoise.m_FrequencyGain = 0;
 	}
 }
