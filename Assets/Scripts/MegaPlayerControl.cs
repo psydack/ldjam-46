@@ -10,12 +10,19 @@ public class MegaPlayerControl : MonoBehaviour
 
 	public float playerForce = 1.1f;
 	public float pressForce = 1;
+	public float Speed = 1;
 
 	public bool started = false;
 
 	private void Start()
 	{
 		startPosition = transform.position;
+		finalPosition -= startPosition;
+	}
+
+	public void StartTheGame()
+	{
+		started = true;
 	}
 
 	// Update is called once per frame
@@ -35,13 +42,22 @@ public class MegaPlayerControl : MonoBehaviour
 			}
 
 			// interpol
-			position.y -= finalPower * Time.deltaTime;
+			position.y -= finalPower * Time.deltaTime * Speed;
 
 			// clamp
-			if (position.y >= startPosition.y) position.y = startPosition.y;
-			
+			//position.y = Mathf.Clamp(finalPosition.y, startPosition.y, position.y);
+			if (position.y > startPosition.y) position.y = startPosition.y;
+			else if (position.y < finalPosition.y) position.y = finalPosition.y;
+
 			// apply results on transform
 			transform.position = position;
 		}
+	}
+
+
+	public void ResetToInitialState()
+	{
+		started = false;
+		transform.position = startPosition;
 	}
 }
