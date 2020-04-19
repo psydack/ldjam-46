@@ -62,7 +62,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KeyFadeUp 1
+  m_Name: KeyFadeUp 2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -75,7 +75,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f35e157623f65d54f999a0e9690d5ffe, type: 2}
+  m_Motion: {fileID: 7400000, guid: 49dcf83a2ebd8ff478cdfa9b044c0873, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -113,7 +113,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KeyFadeUp 2
+  m_Name: KeyFadeUp 3
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -126,7 +126,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 49dcf83a2ebd8ff478cdfa9b044c0873, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3e22ce24867e75e4b90c98296644b7a6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -179,7 +179,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KeyFadeUp
+  m_Name: KeyFadeUp 1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

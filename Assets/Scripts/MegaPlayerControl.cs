@@ -32,14 +32,6 @@ public class MegaPlayerControl : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		for (int i = 0; i < keyCodes.Length; i++)
-		{
-			KeyCode keyCode = (KeyCode)keyCodes.GetValue(i);
-			if (Input.GetKeyDown(keyCode))
-			{
-				GameController.Instance.GenerateKeyFade(keyCode);
-			}
-		}
 		if (started)
 		{
 			var position = transform.position;

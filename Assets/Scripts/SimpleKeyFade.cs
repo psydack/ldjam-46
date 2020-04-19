@@ -8,6 +8,7 @@ public class SimpleKeyFade : MonoBehaviour
 
 	public void SetChar(string keyChar)
 	{
+		print(keyChar);
 		GetComponent<TextMeshPro>().SetText(keyChar);
 	}
 
