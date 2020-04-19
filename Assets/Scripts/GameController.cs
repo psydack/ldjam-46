@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,8 @@ public class GameController : Singleton<GameController>
 
 	public SimpleUIFade loseCanvas;
 	public SimpleUIFade winCanvas;
+
+	public GameObject keyPrefab;
 
 	private void Awake()
 	{
@@ -44,4 +47,20 @@ public class GameController : Singleton<GameController>
 		winCanvas.FadeIn();
 		winCanvas.GetComponent<CanvasGroup>().interactable = true;
 	}
+
+	public void GenerateKeyFade(KeyCode key)
+	{
+		var instance = GameObject.Instantiate(keyPrefab);
+
+		float posZ = Random.Range(-1.5f, 1.5f);
+		//float posY = Random.Range(1.5f, 3f);
+
+		var position = new Vector3(instance.transform.position.x, instance.transform.position.y, posZ);
+
+		instance.transform.position = position;
+
+
+		instance.GetComponent<SimpleKeyFade>().SetChar(Helpers.KeyToCaption(key)); ;
+	}
+
 }

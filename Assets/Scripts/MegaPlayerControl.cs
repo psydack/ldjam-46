@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MegaPlayerControl : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class MegaPlayerControl : MonoBehaviour
 	public float Speed = 1;
 
 	public bool started = false;
+
+	private readonly Array keyCodes = Enum.GetValues(typeof(KeyCode));
 
 	private void Start()
 	{
@@ -28,6 +32,14 @@ public class MegaPlayerControl : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		for (int i = 0; i < keyCodes.Length; i++)
+		{
+			KeyCode keyCode = (KeyCode)keyCodes.GetValue(i);
+			if (Input.GetKeyDown(keyCode))
+			{
+				GameController.Instance.GenerateKeyFade(keyCode);
+			}
+		}
 		if (started)
 		{
 			var position = transform.position;
@@ -38,7 +50,15 @@ public class MegaPlayerControl : MonoBehaviour
 			// player action
 			if (Input.anyKeyDown)
 			{
-				finalPower -= playerForce;
+				for (int i = 0; i < keyCodes.Length; i++)
+				{
+					KeyCode keyCode = (KeyCode)keyCodes.GetValue(i);
+					if (Input.GetKeyDown(keyCode))
+					{
+						finalPower -= playerForce;
+						GameController.Instance.GenerateKeyFade(keyCode);
+					}
+				}
 			}
 
 			// interpol
@@ -54,10 +74,4 @@ public class MegaPlayerControl : MonoBehaviour
 		}
 	}
 
-
-	public void ResetToInitialState()
-	{
-		started = false;
-		transform.position = startPosition;
-	}
 }
