@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : Singleton<GameController>
 {
@@ -9,9 +10,14 @@ public class GameController : Singleton<GameController>
 	public MegaPlayerControl playerControl;
 	public SimpleUIFade uiFade;
 
+	public SimpleUIFade loseCanvas;
+	public SimpleUIFade winCanvas;
+
 	private void Awake()
 	{
 		uiFade.gameObject.SetActive(true);
+		loseCanvas.gameObject.SetActive(true);
+		winCanvas.gameObject.SetActive(true);
 	}
 
 	private void Start()
@@ -23,16 +29,19 @@ public class GameController : Singleton<GameController>
 	{
 		playerControl.StartTheGame();
 	}
-
-	public void EndGame()
+	public void RestartGame()
 	{
-		uiFade.FadeIn();
+		SimpleLoadScene.LoadSceneS(SceneManager.GetActiveScene().name);
+	}
+	public void LoseGame()
+	{
+		loseCanvas.FadeIn();
+		loseCanvas.GetComponent<CanvasGroup>().interactable = true;
 	}
 
-	public void ResetGame()
+	public void WinGame()
 	{
-		tobias.ResetToInitialState();
-		playerControl.ResetToInitialState();
-		uiFade.FadeIn();
+		winCanvas.FadeIn();
+		winCanvas.GetComponent<CanvasGroup>().interactable = true;
 	}
 }
