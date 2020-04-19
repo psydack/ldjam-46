@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class SimpleUIFade : MonoBehaviour
 {
-	Image image;
+	CanvasGroup canvasGroup;
 
 	private void Awake()
 	{
-		image = GetComponent<Image>();
+		canvasGroup = GetComponent<CanvasGroup>();
 	}
 
 	public void FadeIn()
@@ -24,34 +24,30 @@ public class SimpleUIFade : MonoBehaviour
 
 	IEnumerator FadeIn(float speed)
 	{
-		var color = Color.black;
-		color.a = 0;
-		image.color = color;
-		while (color.a < 1)
+		canvasGroup.blocksRaycasts = true;
+		float alpha = 0;
+		while (alpha < 1)
 		{
-			color.a += Time.deltaTime * speed;
-			image.color = color;
+			alpha += Time.deltaTime * speed;
+			canvasGroup.alpha = alpha;
 			yield return null;
 		}
-		color.a = 1;
-		image.color = color;
-		image.raycastTarget = true;
+		alpha = 1;
+		canvasGroup.alpha = alpha;
 	}
 
 	IEnumerator FadeOut(float speed)
 	{
-		var color = Color.black;
-		color.a = 1;
-		image.color = color;
-		while (color.a > 0)
+		float alpha = 1;
+		while (alpha > 0)
 		{
-			color.a -= Time.deltaTime * speed;
-			image.color = color;
+			alpha -= Time.deltaTime * speed;
+			canvasGroup.alpha = alpha;
 			yield return null;
 		}
-		color.a = 0;
-		image.color = color;
-		image.raycastTarget = false;
+		alpha = 0;
+		canvasGroup.alpha = alpha;
+		canvasGroup.blocksRaycasts = false;
 	}
 
 }
