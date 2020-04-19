@@ -226,6 +226,8 @@ GameObject:
   - component: {fileID: 706347539}
   - component: {fileID: 706347538}
   - component: {fileID: 706347542}
+  - component: {fileID: 706347543}
+  - component: {fileID: 706347544}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -315,16 +317,44 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706347537}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c4c102d496d8b640b7d56e6b8840e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PressRate: 1
-  PressVelocity: 1
+  PressVelocity: 0.2
   ReleaseVelocity: 1
   PressDelay: 1
   ReleaseDelay: 1
+--- !u!114 &706347543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706347537}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6970ca6298fd35740af7989ae340606f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Power: 0.1
+--- !u!114 &706347544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706347537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6c592ab373b8f419d6c02763713844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerForce: 20
+  pressForce: 1
+  started: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,8 +390,8 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -514,7 +544,7 @@ GameObject:
   - component: {fileID: 1559529532}
   - component: {fileID: 1559529531}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -552,7 +582,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 055eade6a7db8ce45b89321b30437467, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
