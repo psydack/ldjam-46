@@ -1,27 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class Tobias : MonoBehaviour
 {
+	public TextMeshProUGUI tobiasCountdown;
+	int countdown = 30;
 
-    //var startTime = float;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Invoke("NextAction", Random.Range(2f, 5f));
-        Invoke("NextAction", Random.Range(5f, 10f));
-    }
-
-    public void NextAction()
+	// Start is called before the first frame update
+	void Start()
 	{
-        GetComponent<Animator>().SetTrigger("NextAction");
+		Invoke("NextAction", 3f);
+		Invoke("NextAction", 25f);
+		InvokeRepeating("UpdateCountdown", 1, 1);
+
+	}
+
+	void UpdateCountdown()
+	{
+		if (countdown > 0)
+		{
+			countdown--;
+			tobiasCountdown.SetText(countdown.ToString());
+		}
 	}
 
 
-    public void ResetToInitialState()
-    {
-        GetComponent<Animator>().Rebind();
-    }
+	public void NextAction()
+	{
+		GetComponent<Animator>().SetTrigger("NextAction");
+	}
+
+
+	public void ResetToInitialState()
+	{
+		GetComponent<Animator>().Rebind();
+	}
 }

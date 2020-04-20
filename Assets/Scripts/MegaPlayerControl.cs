@@ -16,12 +16,19 @@ public class MegaPlayerControl : MonoBehaviour
 
 	public bool started = false;
 
+	[ReadOnly] [SerializeField] int currentLevel = 1;
+
 	private readonly Array keyCodes = Enum.GetValues(typeof(KeyCode));
 
 	private void Start()
 	{
 		startPosition = transform.position;
 		finalPosition -= startPosition;
+
+		for (int i = 1; i < 4; i++)
+		{
+			Invoke("NextLevel", 7 * i);
+		}
 	}
 
 	public void StartTheGame()
@@ -32,14 +39,14 @@ public class MegaPlayerControl : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		for (int i = 0; i < keyCodes.Length; i++)
-		{
-			KeyCode keyCode = (KeyCode)keyCodes.GetValue(i);
-			if (Input.GetKeyDown(keyCode))
-			{
-				GameController.Instance.GenerateKeyFade(keyCode);
-			}
-		}
+		//for (int i = 0; i < keyCodes.Length; i++)
+		//{
+		//	KeyCode keyCode = (KeyCode)keyCodes.GetValue(i);
+		//	if (Input.GetKeyDown(keyCode))
+		//	{
+		//		GameController.Instance.GenerateKeyFade(keyCode);
+		//	}
+		//}
 		if (started)
 		{
 			var position = transform.position;
@@ -69,9 +76,28 @@ public class MegaPlayerControl : MonoBehaviour
 			if (position.y > startPosition.y) position.y = startPosition.y;
 			else if (position.y < finalPosition.y) position.y = finalPosition.y;
 
+			var portionPosition = 2.18f / 4f;
+			if (position.y < startPosition.y - (portionPosition * 2))
+			{
+				GameController.Instance.ChangeCamera(3);
+			}
+			else if (position.y < startPosition.y - (portionPosition))
+			{
+				GameController.Instance.ChangeCamera(2);
+			}
+			else
+			{
+				GameController.Instance.ChangeCamera(1);
+			}
 			// apply results on transform
 			transform.position = position;
 		}
 	}
 
+	void NextLevel()
+	{
+		currentLevel += 1;
+		pressForce = 1.3f * currentLevel;
+		Speed = 0.13f * currentLevel;
+	}
 }
